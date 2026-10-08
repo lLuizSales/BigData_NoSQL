@@ -8,12 +8,16 @@ services:
       - ./app.py:/app/app.py  # Mapeia o arquivo app.py externo
       - ./templates:/app/templates  # Mapeia o diretório de templates
       - ./static:/app/static  # Mapeia o diretório de arquivos estáticos
+    networks:
+      - mybridge
     depends_on:
       - redis
   redis:
     image: "redis:alpine"
     ports:
       - "6379:6379"
+    networks:
+      - mybridge
 
 # GUI
   redis-commander:
@@ -22,5 +26,11 @@ services:
       - REDIS_HOSTS=local:redis:6379
     ports:
       - "8081:8081"
+    networks:
+      - mybridge
     depends_on: 
       - redis
+
+networks:
+  mybridge:
+    external: true

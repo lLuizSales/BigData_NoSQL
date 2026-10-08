@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 # Verifica se as pastas existem e, se não existirem, as cria
 for folder in config data notebooks; do
